@@ -46,6 +46,7 @@
 					</execution>
 				</executions>
 				<configuration>
+					<showConsoleWindow>false</showConsoleWindow>
 					<programs>
 						<program>
 							<mainClass>de.kazkazi.svnExtensionTools.SVNExtensionTools</mainClass>

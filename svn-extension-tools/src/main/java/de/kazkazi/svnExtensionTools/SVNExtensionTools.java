@@ -64,9 +64,10 @@ public class SVNExtensionTools {
 			status = statusClient.doStatus(file, false);
 		} catch (SVNException e) {
 			logger.error("SVN Status was not possible", e);
-			String message = "Some error with SVN";
+			String message = "Some error with SVN. Probably the file selected is not in SVN.";
 			String title = "Error";
 			JOptionPane.showMessageDialog(null, message, title, JOptionPane.ERROR_MESSAGE);
+			System.exit(ERROR_END);
 		}
 		if (status != null) {
 			SVNURL fileSVNUrl = status.getRemoteURL();
@@ -74,6 +75,9 @@ public class SVNExtensionTools {
 			Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
 			StringSelection stringSelection = new StringSelection(fileSVNUrl.toString());
 			clpbrd.setContents(stringSelection, null);
+			String message= "Remote SVN URL has been coppied to the clipboard";
+			String title = "Success!";
+			JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			String message = "File "+fileName+" cannot be found in SVN";
 			String title = "File not found in Repository";
